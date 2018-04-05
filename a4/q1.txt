@@ -1,0 +1,15 @@
+i) 
+the input value is 100 10 80000 
+* the result is average by 3 experiment
+
+			Mutex/Condition 	Barrier 	Semaphore
+user			16.18u				 16.08u		 16.02u
+real 		 0:16.20r		  	0:16.08r	0:16.02r
+
+ii)
+Barrier and Semaphore is obviously faster than mutex condition lock. 
+Because all thread run concurrentlly before they meet the 
+criticial session, in this case is meet the group number to 
+vote, while mutex/condition runs sequentially at the beginning 
+of the 'vote' function, which waste more time. Which means the 
+criticial session size in Barrier and Semaphore is smaller than the size in mutex condition lock.

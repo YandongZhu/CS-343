@@ -1,0 +1,153 @@
+Test Explanation:
+  There are 5 groups of tests.
+
+-------+---------+----------------------------------------------+------------------------------------------------------
+Test # | Line #s | Key Point of Test                            | Analysis of Test
+-------+---------+----------------------------------------------+------------------------------------------------------
+1      | 1-6     | Test cases for wrong command line input.     | The first 3 will result in a error exit for program
+       |         |                                              | Since some of the input can't be open or not exist.
+       |         |                                              | The fourth and fifth is the non-exist filter option,
+       |         |                                              | which will also be exited.
+       |         |                                              | The last one is the correst flag with extra letters,
+       |         |                                              | which will produce correct output.
+-------+---------+----------------------------------------------+------------------------------------------------------
+2      | 7-9     | Test cases for empty file for each filter.   | Since there is no input, each filter should output
+       |         |                                              | nothing and 0 characters
+-------+---------+----------------------------------------------+------------------------------------------------------
+3      | 10-13   | Basic test for a general input file.         | Since it is the general test, each filter should 
+       |         |                                              | generate corrsponding output
+-------+---------+----------------------------------------------+------------------------------------------------------
+4      | 13-18   | The combination for several filters to       | These are the test cases for checking that multi
+       |         | generate different version of output         | filters can be combined correctly to filter there own
+       |         | correspending to the filter.                 | part
+-------+---------+----------------------------------------------+------------------------------------------------------
+5      | 19-22   | Test cases for testing file has multiple     | Test cases test for the correct output for hex filter
+       |         | lines.                                       | and whitespace filter when multiple lines
+       |         |                                              |
+-------+---------+----------------------------------------------+------------------------------------------------------
+      
+The content in Input file FOR TEST 1-18 will be
+          "The    quick    brown fox    jumps    over the lazy dog."
+
+The content in Input file FOR TEST 19-22 will be
+    ab  cd
+  cdefg
+
+      1    ./filter notExistInput
+
+          Error! Could not open input file "notExistInput"
+          Usage: ./filter [ -filter-options ... ] [ infile [outfile] ]
+
+      2    ./filter Input cantOpenOutput
+
+          Error! Could not open output file "cantOpenOutput"
+          Usage: ./filter [ -filter-options ... ] [ infile [outfile] ]
+
+      3    ./filter Input Output Extra
+
+          Usage: ./filter [ -filter-options ... ] [ infile [outfile] ]
+
+      4    ./filter -a Input Output
+
+          unknown filter -a
+
+      5    ./filter -a -b Input Output
+
+          unknown filter -b
+
+      6    ./filter -hgabc Input
+
+          "The quick brown fox jumps over the lazy dog."
+          47 characters
+
+
+
+      7    ./filter -h emptyInput
+
+          0 characters
+
+      8    ./filter -w emptyInput
+
+          0 characters
+
+      9    ./filter -p emptyInput
+
+          0 characters
+
+
+      10   ./filter -h Input
+
+          0922 5468   6520 2020   2071 7569   636b 2020
+          2020 6272   6f77 6e20   666f 7820   2020 206a
+          756d 7073   2020 2020   6f76 6572   2074 6865
+          206c 617a   7920 646f   672e 220a171 characters
+
+      11   ./filter -w Input
+
+          "The quick brown fox jumps over the lazy dog."
+          47 characters
+
+      12   ./filter -p Input
+
+            "Uif    rvjdl    cspxo gpy    kvnqt    pwfs uif mbaz eph."
+            60 characters
+
+      13   ./filter -w -h Input
+
+            2254 6865   2071 7569   636b 2062   726f 776e
+            2066 6f78   206a 756d   7073 206f   7665 7220
+            7468 6520   6c61 7a79   2064 6f67   2e22 0a135 characters
+
+      14   ./filter -h -w Input
+
+            0922 5468 6520 2020 2071 7569 636b 2020
+            2020 6272 6f77 6e20 666f 7820 2020 206a
+            756d 7073 2020 2020 6f76 6572 2074 6865
+            206c 617a 7920 646f 672e 220a149 characters
+
+      15   ./filter -h -w -h Input
+
+            3039 3232   2035 3436   3820 3635   3230 2032
+            3032 3020   3230 3731   2037 3536   3920 3633
+            3662 2032   3032 300a   3230 3230   2036 3237
+            3220 3666   3737 2036   6532 3020   3636 3666
+            2037 3832   3020 3230   3230 2032   3036 610a
+            3735 3664   2037 3037   3320 3230   3230 2032
+            3032 3020   3666 3736   2036 3537   3220 3230
+            3734 2036   3836 350a   3230 3663   2036 3137
+            6120 3739   3230 2036   3436 6620   3637 3265
+            2032 3230   61428 characters
+
+      16   ./filter -w -h -w Input
+
+            2254 6865 2071 7569 636b 2062 726f 776e
+            2066 6f78 206a 756d 7073 206f 7665 7220
+            7468 6520 6c61 7a79 2064 6f67 2e22 0a117 characters
+
+      17   ./filter -w -h -p Input
+
+            2254 6865   2071 7569   636c 2062   726g 776f
+            2066 6g78   206b 756e   7073 206g   7665 7220
+            7468 6520   6d61 7b79   2064 6g67   2f22 0b135 characters
+
+      18   ./filter -w -p Input
+            "Uif rvjdl cspxo gpy kvnqt pwfs uif mbaz eph."
+            47 characters
+
+      19    ./filter -h multiLineInput
+
+            0909 6162   2020 6364   0a09 6364   6566 670a45 characters
+
+      20    ./filter -w multiLineInput
+
+            ab cd
+            cdefg
+            12 characters
+
+      21    ./filter -h -w multiLineuInput
+
+            0909 6162 2020 6364 0a09 6364 6566 670a39 characters
+
+      22    ./filter -w -h multiLineuInput
+
+            6162 2063   640a 6364   6566 670a33 characters

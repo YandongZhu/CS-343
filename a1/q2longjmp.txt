@@ -1,0 +1,25 @@
+i.
+  For the original version (try/catch), when exception is thrown, the current stack will try 
+to find the keyword 'catch'. If there is no 'catch' in the current the stack, program will 
+destory the current stack and try to find 'catch' in the previous stack. At that time, the 
+destructor of 'T' will be called. and the '~' will be printed on the screen.
+
+	By using setjmp/longjmp, when exception is raised, program will directly jump to the previous 
+stack without destorying the current stack. Thus the desturcor will only be called when the 
+stack is ended by normal return. So once exception occurs, there will miss a '~', that's why
+the output is not the same between the original and transformed program.
+
+ii.
+	input: 10 15 25 25
+		original: 40.58u 0.00s 0:40.58    				
+		transform: 23.79u 0.00s 0:23.79  
+		optimize original: 46.04u 0.01s 0:46.05	
+		optimize transform: 25.29u 0.00s 0:25.30
+
+iii.
+	Transformed program is faster than the original one by about 40%.
+	Because when exception is rasied, transformed program will directly jump to where we set the jump point
+	The original one will return the result stack by stack, which will slower the time
+
+iv.
+	When optimization is used, both transformed and original become slower by about 9%.

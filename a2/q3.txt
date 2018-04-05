@@ -1,0 +1,56 @@
+a.
+	single: shared:25653084
+	single: shared:34871113
+	single: shared:26972251
+	single: shared:28074173
+	single: shared:27900685
+	single: shared:25317111
+	single: shared:28202744
+	single: shared:24042009
+	single: shared:25188665
+	single: shared:29288586
+	 
+	multi: shared:20309008
+	multi: shared:20219375
+	multi: shared:23326845
+	multi: shared:23964514
+	multi: shared:20266327
+	multi: shared:24210960
+	multi: shared:20115088
+	multi: shared:21518956
+	multi: shared:23749385
+	multi: shared:20029251
+
+b.
+	No, because it is a concurrent program. Thread might switch 
+before storing result back to the memory, which will 
+generate different value.
+
+c.
+	The largest value is 40000000 when the program finish its tasks 
+sequentially. So the largest possible number is adding one by one 
+which is 40000000.
+	The smallest value is 2, the situation is 
+			              task 1										|			         task 2
+	read share = 0															|	
+	share += 1 (before store back into memeory)	|	
+	switch to task 2														|
+																							|	increment 9999999 times
+																							|	in the 10000000th time, share += 1
+																							|	before read the next share, switch to task 1
+	store share = 1 into memeory								|
+	switch to task 2														|	read from memory, share = 1
+																							|	share += 1, before store back to memory																							
+																							|	switch to task 1
+	run the rest steps and finish               |
+	FINISH                                      |
+																							|	store the value back to the memory
+																							|	FINISH
+Now the share is 2, which is the smallest number.
+
+d. 
+	The result for the multi processor (20000000 - 23000000) is 
+obvious smaller than single processor (24000000+), Because 
+there are more threads in multi processor runs concurrently, so
+the situation in 'b' will occur more frequently, so the value 
+is relative smaller.

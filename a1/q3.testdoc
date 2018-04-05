@@ -1,0 +1,55 @@
+Test Explanation:
+  There are 4 groups of tests.
+
+-------+---------+----------------------------------------------+------------------------------------------------------
+Test # | Line #s | Key Point of Test                            | Analysis of Test
+-------+---------+----------------------------------------------+------------------------------------------------------
+1      | 1-8     | Some corrent for different cases             | If the program is corrent, all these test cases will 
+       |         |                                              | be yes with no extraneous characters.
+-------+---------+----------------------------------------------+------------------------------------------------------
+2      | 9-18    | Basic tests for same invalid input           | Test for the invalid input, all should be 'no'.
+       |         | or invalid character (not format error).     | 
+-------+---------+----------------------------------------------+------------------------------------------------------
+3      | 19-27   | Test for the input is not the correct format.| Because the format is not correct, all should be 'no'.
+       |         |                                              | 
+-------+---------+----------------------------------------------+------------------------------------------------------
+4      | 28-32   | Test for the first part of the input is      | The first part of the input is a corrent amount,
+       |         | correct.                                     | No matter what is the rest, it should be 'yes'.
+-------+---------+----------------------------------------------+------------------------------------------------------
+
+
+      1    '$1.00' : '$1.00' yes
+      2    'E1,00' : 'E1,00' yes
+      3    '$-1.00' : '$-1.00' yes
+      4    'E1.234,00' : 'E1.234,00' yes
+      5    '$-12,345.67' : '$-12,345.67' yes
+      6    'E123.456,78' : 'E123.456,78' yes
+      7    'E1.222.333.444,56' : 'E1.222.333.444,56' yes
+      8    '$1,222,333,444,555.45' : '$1,222,333,444,555.45' yes
+
+      9    '' : Warning! Blank line.
+      10   '$1.0' : '$1.0' no
+      11   'E,00' : 'E,' no -- extraneous characters '00'
+      12   '$+1.00' : '$+' no -- extraneous characters '1.00'
+      13   'e3,44' : 'e' no -- extraneous characters '3,44'
+      14   'abcd' : 'a' no -- extraneous characters 'bcd'
+      15   'a3,44' : 'a' no -- extraneous characters '3,44'
+      16   '--3,44' : '-' no -- extraneous characters '-3,44'
+      17   'E--3,44' : 'E--' no -- extraneous characters '3,44'
+      18   '$1,34r.00' : '$1,34r' no -- extraneous characters '.00'
+
+      19   '$1111.22' : '$1111' no -- extraneous characters '.22'
+      20   'E111.222,3' : 'E111.222,3' no
+      21   'E-1.222.333.444.555.666,45' : 'E-1.222.333.444.555.' no -- extraneous characters '666,45'
+      22   '0' : '0' no
+      23   '0.00' : '0' no -- extraneous characters '.00'
+      24   '.00' : '.' no -- extraneous characters '00'
+      25   '$,111.22' : '$,' no -- extraneous characters '111.22'
+      26   '$1,22,333.44' : '$1,22,' no -- extraneous characters '333.44'
+      27   '$0.0.0' : '$0.0.' no -- extraneous characters '0'
+
+      28   '$111,222.3333' : '$111,222.33' yes -- extraneous characters '33'
+      29   '$1.2222222' : '$1.22' yes -- extraneous characters '22222'
+      30   '$0.00.00' : '$0.00' yes -- extraneous characters '.00'
+      31   'E1,222,00' : 'E1,22' yes -- extraneous characters '2,00'
+      32   'E1,23ert' : 'E1,23' yes -- extraneous characters 'ert'

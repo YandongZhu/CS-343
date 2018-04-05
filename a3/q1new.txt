@@ -1,0 +1,37 @@
+a) 
+task 1: 
+	common:		1.23u 0.00s 0:01.23
+	darray:		1.79u 0.00s 0:01.81
+	vector1:	2.58u 0.00s 0:02.60
+	vector2:	12.20u 0.02s 0:12.24
+task 2:
+	common:		2.40u 0.00s 0:01.23
+	darray:		19.89u 0.02s 0:10.09
+	vector1:	24.12u 0.04s 0:12.07
+	vector2:	163.71u 0.16s 1:21.91
+task 4:
+	common:		4.69u 0.02s 0:01.20
+	darray:		57.54u 0.04s 0:14.79
+	vector1:	77.01u 0.13s 0:20.15
+	vector2:	571.09u 0.65s 2:22.93
+
+b)
+user time:
+									common	darray	vector1	 vector2
+task 1 -> task 2:	 1.95		 11.11   9.35     13.4
+task 2 -> task 4:	 1.95    2.89    3.20     3.49  
+
+
+real time:
+									common	darray	vector1	 vector2
+task 1 -> task 2:	  1		   5.57    4.64     6.69
+task 2 -> task 4:	 0.97    1.46    1.67     1.77
+
+We can see that for the no preprocessor argument the program is
+relative stable, while is we use heap memory, the runtime will
+become longer when the number of task increase.
+
+c)
+First reason is it is more fast for finding position in stack
+compare to heap. For heap operation, directly assign is faster
+than adding argument by "at" and "push_back". 

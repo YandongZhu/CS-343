@@ -1,0 +1,18 @@
+  The angles in the video is a Synchronization deadlock
+By the video we can see that the 4 angels look at each other
+by this position:
+A---B
+|\ /|
+|	X	|	
+|/ \|
+C---D
+As we can see that, each angle look at the three other angles,
+for each angle, there is a dead lock chain such that:
+
+A -> B/C/D -> A
+B -> A/C/D -> B
+C -> A/B/D -> C
+D -> A/B/C -> D
+
+So the only way to elimate the dead lock is to remove any of the 3 angles since none of the angle can move right now.
+So is it a Synchronization deadlock

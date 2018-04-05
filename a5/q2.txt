@@ -1,0 +1,18 @@
+i) 
+the input value is 100 10 60000
+* the result is average by 3 experiment
+* not including AUTO since I did not implement it yet
+
+
+EXT: 7.08u 2.41s 0:10.74r
+INT: 7.28u 3.04s 0:12.11r
+INTB: 15.10u 4.38s 0:21.06r
+TASK: 8.73u 3.83s 0:14.04r
+
+ii)
+By the result above we can see that the run time for external, internal is close, which means
+these two types of scheduling does not have too much difference on runtime. For the INTB it is 
+obvious longer than the rest of three since it includes barging which waste more time.
+TASK is a little bit longer than EXT and INT. Since I did not implement AUTO, but I guess it will
+be close to EXT and INT, since the way of implement AUTO is almost the same as INT, which just move
+the uCondition to the macro.

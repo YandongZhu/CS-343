@@ -1,0 +1,78 @@
+Test Explanation:
+
+-------+---------+----------------------------------------------+------------------------------------------------------
+Test # | Line #s | Key Point of Test                            | Analysis of Test
+-------+---------+----------------------------------------------+------------------------------------------------------
+1      | 1-4     | Test cases for wrong command line input.     | These will result in a error exit for program
+       |         |                                              | Since some of the input is less than zero
+       |         |                                              |
+-------+---------+----------------------------------------------+------------------------------------------------------
+2      | 5-6     | Some basic case for the input                | Since there is no input, each filter should output
+       |         |                                              | nothing and 0 characters
+-------+---------+----------------------------------------------+------------------------------------------------------
+
+      1    ./vote -1
+
+          Usage: ./voteTASK [ voters (> 0 & voters mod group = 0) | 'x' (default 6) [ group (> 0) | 'x' (default 3) [ votes (> 0) | 'x' (default 1) [ seed (> 0), | 'x' (default random) ] ] ] ]
+
+      2    ./vote 1 -1
+
+          Usage: ./voteTASK [ voters (> 0 & voters mod group = 0) | 'x' (default 6) [ group (> 0) | 'x' (default 3) [ votes (> 0) | 'x' (default 1) [ seed (> 0), | 'x' (default random) ] ] ] ]
+
+      3    ./vote 1 1 -1
+
+          Usage: ./voteTASK [ voters (> 0 & voters mod group = 0) | 'x' (default 6) [ group (> 0) | 'x' (default 3) [ votes (> 0) | 'x' (default 1) [ seed (> 0), | 'x' (default random) ] ] ] ]
+
+      4    ./vote 1 1 1 -1
+
+          Usage: ./voteTASK [ voters (> 0 & voters mod group = 0) | 'x' (default 6) [ group (> 0) | 'x' (default 3) [ votes (> 0) | 'x' (default 1) [ seed (> 0), | 'x' (default random) ] ] ] ]
+
+      5    ./vote 3 3 1 95974
+
+          V0      V1      V2
+          ******* ******* *******
+          S
+          V 1,0,2
+          B 1     S       S
+                  V 2,0,1
+                  B 2     V 1,2,0
+          U 0     U 1     C
+          F p     F p     F p
+          *****************
+          All tours started
+
+      6    ./vote 6 3 2 139121
+
+            V0      V1      V2      V3      V4      V5
+            ******* ******* ******* ******* ******* *******
+            S
+            V 1,2,0
+            B 1                     S
+                                    V 2,0,1
+                            S       B 2
+                            V 2,1,0
+            U 0             C       U 1
+            F p
+            S               F p
+            V 2,0,1         S
+            B 1             V 1,2,0
+                            B 2             S
+                                            V 0,2,1
+                                            C
+                                            F s
+                                    F p     S
+            U 0     S       U 1     S
+            F s                     V 2,0,1
+                    V 2,1,0 F s     B 1
+                    B 2                     V 0,2,1
+                                            C
+                    U 1                     F p     S
+                    F p
+                    S               U 0             V 0,2,1
+                    V 1,2,0                         B 1
+                    B 2             F p
+                    U 1
+                    X                               U 0
+                                                    X
+            *****************
+            All tours started

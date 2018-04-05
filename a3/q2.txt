@@ -1,0 +1,26 @@
+i) the array length is 300000000
+	depth 0: 17.02u 1.76s 0:18.73
+	depth 1: 17.80u 0.56s 0:09.76
+	depth 2: 19.97u 1.84s 0:07.53
+	depth 3: 20.01u 1.02s 0:04.36
+	depth 4: 22.50u 0.88s 0:03.59
+	depth 5: 30.46u 1.15s 0:03.23
+	depth 6: 118.69u 3.81s 0:05.17
+
+ii) When the depth increasing, the change becomes:
+				user	real
+	0->1	1.04	0.52
+	1->2	1.12	0.77
+	2->3	1.00	0.58
+	3->4	1.12	0.82
+	4->5	1.35	0.90
+	5->6	3.90	1.69
+
+We can find the the user time is relative stable at 0-5, 
+in depth it increase rapidly
+While the real time is decreasing while at depth = 6 also
+increase
+
+iii) Since we are creating more and more tasks, which means 
+many merging operations will run concurrently at the same time.
+So the real time keeps decreasing while the user time incresing.
